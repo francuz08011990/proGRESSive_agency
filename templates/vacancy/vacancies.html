@@ -1,0 +1,52 @@
+{% extends 'vacancy/base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>proGRESSive agency - Вакансии</title>
+{% endblock %}
+
+{% block nav %}
+    <li><a href="{% url 'vacancy:index' %}">Главная</a></li>
+    <li class="active"><a href="{% url 'vacancy:vacancies' %}">Вакансии</a></li>
+    <li><a href="#contacts">Контакты</a></li>
+{% endblock %}
+
+{% block content %}
+    {% for country in countries %}
+        <section class="probootstrap-section">
+        <div class="container border">
+          <div class="row">
+            <div class="col-md-12 section-heading probootstrap-animate">
+              <h2>{{ country.title }}</h2>
+            </div>
+          </div>
+          <div class="row">
+              {% for vacancy in country.vacancies.all %}
+                  <div class="col-md-4 col-sm-6 probootstrap-animate">
+                    <div class="probootstrap-card">
+                        <div class="probootstrap-card-media">
+                            <a href="{% url 'vacancy:vacancy' vacancy.id %}"><img src="{{ vacancy.image.url }}" class="img-responsive img-border" alt='{{ vacancy.title }}'></a>
+                        </div>
+                        <div class="probootstrap-card-text">
+                          <h2 class="probootstrap-card-heading mb0">{{ vacancy.title }}</h2>
+                          <p class="category">{{ vacancy.city }}</p>
+                          <p>
+                              Кто требуется: {{ vacancy.gender }}
+                              <br>Проживание: {{ vacancy.residence }}
+                              <br>Зарплата: {{ vacancy.salary }}
+                          </p>
+                        </div>
+                    </div>
+                  </div>
+              {% endfor %}
+
+          </div>
+        </div>
+      </section>
+      <!-- END section -->
+    {% endfor %}
+
+{% endblock %}
+
+  </body>
+</html>

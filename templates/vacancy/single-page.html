@@ -1,0 +1,84 @@
+{% extends 'vacancy/base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>proGRESSive agency - Вакансии</title>
+{% endblock %}
+
+{% block nav %}
+    <li><a href="{% url 'vacancy:index' %}">Главная</a></li>
+    <li><a href="{% url 'vacancy:vacancies' %}">Вакансии</a></li>
+    <li><a href="{% url 'vacancy:contacts' %}">Контакты</a></li>
+{% endblock %}
+
+{% block content %}
+  <section class="page-title">
+    <div class="container">
+          <h1>{{ vacancy.title }}</h1>
+    </div>
+  </section>
+
+  <section class="probootstrap-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <p><img src="{{ vacancy.image.url }}" alt="{{ vacancy.title }}" class="img-responsive img-border"></p>
+          <h2>Описание вакансии</h2>
+          {{ vacancy.description | safe }}
+          <h2>Дополнительная информация</h2>
+          {{ vacancy.additional_information | safe }}
+        </div>
+
+
+
+        <div class="col-md-4">
+          <div class="panel-group probootstrap-panel" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab">
+                <h4 class="panel-title">
+                    Кто требуется: <i>{{ vacancy.gender }}</i>
+                </h4>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab">
+                <h4 class="panel-title">
+                    Возраст: <i>{{ vacancy.age }}</i>
+                </h4>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab">
+                <h4 class="panel-title">
+                    Зарплата: <i>{{ vacancy.salary }}</i>
+                </h4>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab">
+                <h4 class="panel-title">
+                    Проживание: <i>{{ vacancy.residence }}</i>
+                </h4>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab">
+                <h4 class="panel-title">
+                    Рабочие часы: <i>{{ vacancy.working_hours }}</i>
+                </h4>
+              </div>
+            </div>
+
+
+          </div>
+          <!-- END panel-group -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

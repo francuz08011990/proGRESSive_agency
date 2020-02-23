@@ -1,0 +1,120 @@
+{% extends 'vacancy/base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>proGRESSive agency - Главная</title>
+{% endblock %}
+
+{% block nav %}
+    <li class="active"><a href="{% url 'vacancy:index' %}">Главная</a></li>
+    <li><a href="{% url 'vacancy:vacancies' %}">Вакансии</a></li>
+    <li><a href="#contacts">Контакты</a></li>
+{% endblock %}
+
+{% block content %}
+  <!--After submited form-->
+  {% if message %}
+    <div id="modalPhone" class="modal" style="display: table">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Закажите обратный звонок</h2>
+            </div>
+            <div class="modal-body" style="text-align: center">
+                {{ message }}
+            </div>
+        </div>
+    </div>
+  {% endif %}
+
+  <section class="probootstrap-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="service left-icon probootstrap-animate">
+            <div class="icon">
+                <i class="icon-profile"></i>
+            </div>
+            <div class="text">
+              <h3 class="heading">Официально трудоустраиваем</h3>
+              <p>Гарантируем официальное трудоустройство и оформление всех документов. </p>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service left-icon probootstrap-animate">
+            <div class="icon">
+              <i class="icon-man-woman"></i>
+            </div>
+            <div class="text">
+              <h3 class="heading">Индивидуальный подход</h3>
+              <p>Индивидуальный подбор вакансий для каждого клиента. </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service left-icon probootstrap-animate">
+            <div class="icon">
+              <i class="icon-wallet"></i>
+            </div>
+            <div class="text">
+              <h3 class="heading">Доступные цены</h3>
+              <p>Цены лучше, чем у наших конкурентов. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="service left-icon probootstrap-animate">
+
+            <div class="icon">
+              <i class="icon-v-card"></i>
+            </div>
+            <div class="text">
+              <h3 class="heading">Лицензия</h3>
+              <p>Мы являемся лицензированной компанией. Решение Минсоцполитики Украины №1073 от 26.09.2016. </p>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service left-icon probootstrap-animate">
+            <div class="icon">
+              <i class="icon-home2"></i>
+            </div>
+            <div class="text">
+              <h3 class="heading">С нами работают крупные компании</h3>
+              <p>Наши партнеры - только проверенные крупные фирмы и предприятия, которые долго существуют на бирже труда. </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service left-icon probootstrap-animate">
+            <div class="icon">
+              <i class="icon-info2"></i>
+            </div>
+            <div class="text">
+              <h3 class="heading">Поддержка</h3>
+              <p>На протяжении всего времени Мы консультируем Вас по всем вопросам. </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- END section -->
+  
+  
+  <div class="container">
+    <div class="probootstrap-animate">
+      <h2 class="mb20">Медицинская страховка для выезда за границу.</h2>
+      <p>Нужна страховка для выезда за границу? Страхование от PZU - это помощь 24 часа в сутки в любой точке мира.</p>
+      <p>Закажи страховку у нас!</p>
+      <p><button id="myBtnPzu" class="btn btn-primary">Заказать</button></p>
+    </div>
+  </div>
+  <!-- END section -->
+{% endblock %}
