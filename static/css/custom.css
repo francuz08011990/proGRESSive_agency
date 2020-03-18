@@ -211,8 +211,6 @@ html {
   position: fixed; /* Stay in place */
   z-index: 999; /* Sit on top */
   padding-top: 100px; /* Location of the box */
-  /*left: 0;*/
-  /*top: 0;*/
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
@@ -232,7 +230,7 @@ html {
 
 /* The Close Button */
 .close {
-  color: #aaaaaa;
+  color: #281e1e;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -261,6 +259,11 @@ html {
   cursor: pointer;
 }
 
+form {
+    margin: auto;
+    /*width: min-content;*/
+}
+
 form input {
     background-color: #141212e6;
     border-radius: 7px;
@@ -280,15 +283,28 @@ form button:hover {
     color: black;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 567px) {
     .modal-content{
         width: 80%;
         font-size: 14px;
     }
     .modal-body{
-        width: 65%;
+        width: 73%;
     }
     form button{
         margin-left: 10vw;
+    }
+}
+
+@media screen and (min-width:568px) and (max-width: 960px) {
+    .modal-content{
+        width: 45%;
+        font-size: 14px;
+    }
+    .modal-body{
+        width: 66%;
+    }
+    form button{
+        margin-left: 6vw;
     }
 }

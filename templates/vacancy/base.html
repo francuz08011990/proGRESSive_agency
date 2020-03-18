@@ -9,7 +9,7 @@
     {% endblock %}
     <meta name="description" content="Легальное трудоустройство на территории Eвропы">
     <meta name="keywords" content="трудоустройство, работа, работа за границей, вакансии">
-    <link rel="shortcut icon" href="static/img/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/styles-merged.css' %}">
@@ -29,7 +29,7 @@
 
   <header role="banner" class="probootstrap-header">
     <div class="container">
-        <a href="{% url 'vacancy:index' %}" class="probootstrap-logo">proGRESSive agency<span>.</span></a>
+        <a href="{% url 'index' %}" class="probootstrap-logo">proGRESSive agency<span>.</span></a>
 
         <a href="#" class="probootstrap-burger-menu visible-xs"><i>Меню</i></a>
         <div class="mobile-menu-overlay"></div>
@@ -66,8 +66,8 @@
           <div class="row">
             <div class="col-md-12 text-center">
               <div class="slides-text probootstrap-animate">
-                <h2>Легальная работа</h2>
-                <p><a href="https://probootstrap.com/" target="_blank" class="btn btn-primary">Get Started</a></p>
+                <h2>Работа в Европе</h2>
+                <p><a href="{% url 'vacancy:vacancies' %}" class="btn btn-primary">Посмотреть вакансии</a></p>
               </div>
             </div>
           </div>
@@ -78,8 +78,8 @@
           <div class="row">
             <div class="col-md-12 text-center">
               <div class="slides-text probootstrap-animate">
-                <h2>в Европе</h2>
-                <p><a href="https://probootstrap.com/" target="_blank" class="btn btn-primary">Get Started</a></p>
+                <h2>Польша. Венгрия.</h2>
+                <p><a href="{% url 'vacancy:vacancies' %}" class="btn btn-primary">Посмотреть вакансии</a></p>
               </div>
             </div>
           </div>
@@ -90,8 +90,8 @@
           <div class="row">
             <div class="col-md-12 text-center">
               <div class="slides-text probootstrap-animate">
-                <h2>Польша. Венгрия.</h2>
-                <p><a href="https://probootstrap.com/" target="_blank" class="btn btn-primary">Get Started</a></p>
+                <h2>Бесплатные вакансии</h2>
+                <p><a href="{% url 'vacancy:vacancies' %}" class="btn btn-primary">Посмотреть вакансии</a></p>
               </div>
             </div>
           </div>
@@ -104,6 +104,15 @@
   {% block content %}
   {% endblock %}
 
+  <div class="container">
+    <div class="probootstrap-animate">
+        <h2 class="mb20">Медицинская страховка</h2>
+        <p>Закажи полис медицинского страхования и получи скидку.</p>
+        <p><button id="myBtnPzu" class="btn btn-primary">Рассчитать стоимость</button></p>
+    </div>
+  </div>
+
+  <!--Round call back button-->
   <div id="myButtonPhone" type="button" class="callback-bt">
     <div class="text-call">
         <i class="fa fa-phone"></i>
@@ -116,14 +125,18 @@
   <div class="modal-content">
       <div class="modal-header">
         <span class="close">&times;</span>
-        <h2>Закажите обратный звонок</h2>
+        <h2>Заказать обратный звонок</h2>
       </div>
       <form action="{% url 'create_back_call' %}" method="post">
           {% csrf_token %}
           <div class="modal-body">
-            <input name="name" required placeholder="Ваше имя">
-            <input name="phone" required placeholder="Номер телефона">
-            <button class="myBtn" type="submit">Отправить</button>
+              <label>
+                  <input type="text" name="name" required placeholder="Ваше имя">
+              </label>
+              <label>
+                  <input id="phone" type="tel" name="phone" required placeholder="Номер телефона">
+              </label>
+              <button name="callBack" class="myBtn" type="submit">Отправить</button>
           </div>
       </form>
   </div>
@@ -136,14 +149,18 @@
   <div class="modal-content">
       <div class="modal-header">
         <span class="close">&times;</span>
-        <h2>Закажите страховку</h2>
+        <h2>Заказать страховку</h2>
       </div>
-      <form action="" method="post">
+      <form action="{% url 'create_back_call' %}" method="post">
           {% csrf_token %}
           <div class="modal-body">
-            <input name="name" required placeholder="Ваше имя">
-            <input name="phone" required placeholder="Номер телефона">
-            <button class="myBtn" type="submit">Отправить</button>
+              <label>
+                  <input type="text" name="name" required placeholder="Ваше имя">
+              </label>
+              <label>
+                  <input id="phone2" type="tel" name="phone" required placeholder="Номер телефона">
+              </label>
+              <button name="insurance" class="myBtn" type="submit">Отправить</button>
           </div>
       </form>
   </div>
@@ -156,7 +173,7 @@
               <h4>Наши контакты</h4>
               <ul class="with-icon colored">
                 <li><i class="icon-location2"></i><span>Украина, Днепропетровская обл., г.Каменское, ул. Днепростроевская, 13</span></li>
-                <li><i class="icon-mail"></i><span>gress@gmail.com</span></li>
+                <li><i class="icon-mail"></i><span>officeprogressivehr@gmail.com</span></li>
                 <li><i class="icon-phone2"></i><a href="tel:+38067 456 7890"><span>+38067 456 7890</span></a></li>
               </ul>
             </div>
@@ -192,9 +209,11 @@
     <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
   </div>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="{% static 'js/scripts.min.js' %}"></script>
-  <script src="{% static 'js/main.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
   <script src="{% static 'js/custom.js' %}"></script>
+  <script src="{% static 'js/jquery.inputmask.js' %}"></script>
 
   </body>
 </html>

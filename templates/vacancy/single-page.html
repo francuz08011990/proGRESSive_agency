@@ -6,9 +6,9 @@
 {% endblock %}
 
 {% block nav %}
-    <li><a href="{% url 'vacancy:index' %}">Главная</a></li>
+    <li><a href="{% url 'index' %}">Главная</a></li>
     <li><a href="{% url 'vacancy:vacancies' %}">Вакансии</a></li>
-    <li><a href="{% url 'vacancy:contacts' %}">Контакты</a></li>
+    <li><a href="#contacts">Контакты</a></li>
 {% endblock %}
 
 {% block content %}

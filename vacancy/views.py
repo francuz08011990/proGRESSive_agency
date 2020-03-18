@@ -11,10 +11,11 @@ def get_all_vacancies(request):
 
 
 def vacancy_detail(request, pk):
+    template_name = 'vacancy/single-page.html'
     vacancy = Vacancy.objects.get(id=pk)
     data = {'vacancy': vacancy}
 
-    return render(request, 'vacancy/single-page.html', data)
+    return render(request, template_name, data)
 
 
 def create_back_call(request):
@@ -22,12 +23,19 @@ def create_back_call(request):
     user_data = request.POST
 
     try:
-        CallRequest.objects.create(
-            name=user_data['name'],
-            phone_number=user_data['phone']
-        )
+        if 'callBack' in user_data:
+            CallRequest.objects.create(
+                name=user_data['name'],
+                phone_number=user_data['phone']
+            )
+        else:
+            CallRequest.objects.create(
+                name=user_data['name'],
+                phone_number=user_data['phone'],
+                reason='Страховка'
+            )
     except:
         data['error'] = 'Что то пошло не так!'
     else:
-        data['message'] = 'Спасибо, в ближайшее время мы Вам перезвоним'
+        data['message'] = 'В ближайшее время мы Вам перезвоним.'
     return render(request, 'vacancy/index.html', data)
